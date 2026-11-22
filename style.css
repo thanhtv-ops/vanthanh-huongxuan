@@ -230,3 +230,6 @@ body.lb-open { overflow: hidden; }
   .cue i { animation: none; }
   .btn, .ph img { transition: none; }
 }
+
+/* lời chúc thân tình */
+.blessing{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(18px,5.2vw,22px);line-height:1.6;color:var(--muted);max-width:30em;margin:34px auto 0;text-wrap:balance}
