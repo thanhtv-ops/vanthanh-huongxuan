@@ -45,6 +45,7 @@
   var bar = document.querySelector(".progress .bar");
   var rider = document.querySelector(".progress .rider");
   var dock = document.querySelector(".dock");
+  var leaves = [].slice.call(document.querySelectorAll(".leaf"));
   var pxs = [].slice.call(document.querySelectorAll(".px"));
   pxs.forEach(function (box) {
     var m = parseFloat(box.getAttribute("data-px")) || 0.07;
@@ -61,6 +62,13 @@
     rider.style.transform = "translateX(" + (p * (window.innerWidth - 34)) + "px)";
     dock.classList.toggle("show", window.scrollY > 360);
     if (reduce) return;
+    leaves.forEach(function (lf) {
+      var r = lf.parentNode.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var d = r.top + r.height / 2 - vh / 2;
+      lf.style.setProperty("--ly", (d * parseFloat(lf.getAttribute("data-speed"))).toFixed(1) + "px");
+      lf.style.setProperty("--lr", (d * 0.06).toFixed(1) + "deg");
+    });
     pxs.forEach(function (box) {
       var r = box.getBoundingClientRect();
       if (r.bottom < -80 || r.top > vh + 80) return;
