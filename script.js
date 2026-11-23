@@ -130,16 +130,34 @@
   });
 })();
 
-/* nhạc nền: chỉ phát khi khách bấm nút */
+/* nhạc nền: mặc định bật. Trình duyệt chặn tự phát có tiếng nên sẽ phát ngay
+   khi khách chạm/bấm lần đầu; khách có thể tắt bằng nút ở góc phải. */
 (function () {
   var a = document.getElementById("bgm"), b = document.getElementById("music");
   if (!a || !b) return;
   a.volume = 0.6;
-  b.addEventListener("click", function () {
-    if (a.paused) {
-      a.play().then(function () { b.setAttribute("aria-pressed", "true"); b.setAttribute("aria-label", "Tắt nhạc nền"); }).catch(function () {});
-    } else {
-      a.pause(); b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", "Bật nhạc nền");
-    }
+  var userOff = false;
+  function ui(on) {
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.setAttribute("aria-label", on ? "Tắt nhạc nền" : "Bật nhạc nền");
+  }
+  function start(ev) {
+    if (ev && ev.target && b.contains(ev.target)) return;
+    if (userOff || !a.paused) return;
+    var p = a.play();
+    if (p && p.then) p.then(function () { ui(true); unbind(); }).catch(function () {});
+  }
+  var evs = ["pointerdown", "touchend", "click", "keydown"];
+  function unbind() { evs.forEach(function (e) { window.removeEventListener(e, start, true); }); }
+  evs.forEach(function (e) { window.addEventListener(e, start, true); });
+  start(); // thử phát ngay khi mở trang
+  b.addEventListener("click", function (ev) {
+    ev.stopPropagation();
+    if (a.paused) { userOff = false; a.play().then(function () { ui(true); }).catch(function () {}); }
+    else { userOff = true; a.pause(); ui(false); }
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { if (!a.paused) { a.pause(); a.dataset.auto = "1"; } }
+    else if (a.dataset.auto === "1" && !userOff) { a.dataset.auto = ""; a.play().catch(function () {}); }
   });
 })();
