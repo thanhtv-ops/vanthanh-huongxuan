@@ -129,3 +129,17 @@
     if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
   });
 })();
+
+/* nhạc nền: chỉ phát khi khách bấm nút */
+(function () {
+  var a = document.getElementById("bgm"), b = document.getElementById("music");
+  if (!a || !b) return;
+  a.volume = 0.6;
+  b.addEventListener("click", function () {
+    if (a.paused) {
+      a.play().then(function () { b.setAttribute("aria-pressed", "true"); b.setAttribute("aria-label", "Tắt nhạc nền"); }).catch(function () {});
+    } else {
+      a.pause(); b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", "Bật nhạc nền");
+    }
+  });
+})();

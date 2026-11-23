@@ -233,3 +233,12 @@ body.lb-open { overflow: hidden; }
 
 /* lời chúc thân tình */
 .blessing{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(18px,5.2vw,22px);line-height:1.6;color:var(--muted);max-width:30em;margin:34px auto 0;text-wrap:balance}
+
+/* nhạc nền */
+.music{position:fixed;top:16px;right:14px;z-index:60;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(248,250,243,.88);backdrop-filter:blur(6px);color:var(--green-deep);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px rgba(38,58,34,.14)}
+.music svg{width:20px;height:20px}
+.music .off{position:absolute;width:26px;height:2px;background:currentColor;transform:rotate(-45deg);border-radius:2px}
+.music[aria-pressed="true"] .off{display:none}
+.music[aria-pressed="true"] svg{animation:bgm 2.4s linear infinite}
+@keyframes bgm{50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){.music[aria-pressed="true"] svg{animation:none}}
