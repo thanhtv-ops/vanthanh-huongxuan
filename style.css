@@ -242,3 +242,4 @@ body.lb-open { overflow: hidden; }
 .music[aria-pressed="true"] svg{animation:bgm 2.4s linear infinite}
 @keyframes bgm{50%{transform:scale(1.14)}}
 @media (prefers-reduced-motion:reduce){.music[aria-pressed="true"] svg{animation:none}}
+footer .credit{display:block;margin-top:8px;font-size:11px;letter-spacing:.04em;opacity:.6;text-transform:none}
