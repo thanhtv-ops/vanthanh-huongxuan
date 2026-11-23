@@ -161,3 +161,20 @@
     else if (a.dataset.auto === "1" && !userOff) { a.dataset.auto = ""; a.play().catch(function () {}); }
   });
 })();
+
+/* màn hình mở thiệp: một cú chạm để vào thiệp và bật nhạc */
+(function () {
+  var cv = document.getElementById("cover"), btn = document.getElementById("open"), a = document.getElementById("bgm"), m = document.getElementById("music");
+  if (!cv || !btn) return;
+  function open() {
+    document.body.classList.remove("locked");
+    cv.classList.add("gone");
+    setTimeout(function () { cv.parentNode && cv.parentNode.removeChild(cv); }, 1000);
+    if (a && a.paused) a.play().then(function () {
+      if (m) { m.setAttribute("aria-pressed", "true"); m.setAttribute("aria-label", "Tắt nhạc nền"); }
+    }).catch(function () {});
+  }
+  btn.addEventListener("click", open);
+  cv.addEventListener("click", function (e) { if (e.target === cv) open(); });
+  setTimeout(function () { btn.focus && btn.focus({ preventScroll: true }); }, 50);
+})();
