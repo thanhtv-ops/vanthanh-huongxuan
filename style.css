@@ -263,3 +263,22 @@ body.locked{overflow:hidden}
 .pair .ph{aspect-ratio:3/4}
 .single{aspect-ratio:4/5;width:100%;max-width:520px;margin:0 auto}
 @media (min-width:820px){.pair{gap:12px}.pair .ph{aspect-ratio:4/5}}
+
+/* nhấn mạnh ngày 03.01.2027 */
+.date-tag{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);font-weight:600;margin-top:6px}
+.date-big{font-size:clamp(34px,10.5vw,46px)!important;font-weight:700;letter-spacing:.16em!important;margin:4px 0 2px}
+.mass-line{font-size:13px;color:var(--muted);margin-top:10px;letter-spacing:.04em}
+.cv-tag{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);font-weight:600}
+.cv-date{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,8.5vw,38px)!important;letter-spacing:.18em!important;margin-top:4px}
+.event.main{position:relative;background:var(--green-deep);border-color:var(--green-deep);color:#eef6ec;box-shadow:0 14px 34px rgba(38,58,34,.25)}
+.event.main .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#f3d98b;color:#3b3210;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 16px;border-radius:999px;white-space:nowrap}
+.event.main .tag{color:#a9cda3}
+.event.main h3,.event.main .when em{color:#fff}
+.event.main .when em{font-size:36px}
+.event.main .sub{color:#c9ddc6}
+.event.main address{color:#e2eee0}
+.event.main .note{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:#eef6ec}
+.event.main .note a{color:#f3d98b}
+.event.main .btn{background:#fff;color:var(--green-deep);border-color:#fff}
+.event.main .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.event.main .note p,.event.main .note{color:#eef6ec}

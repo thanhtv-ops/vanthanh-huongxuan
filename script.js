@@ -4,7 +4,7 @@
   doc.classList.add("js");
 
   /* ---------- Đếm ngược ---------- */
-  var target = new Date("2027-01-02T09:00:00+07:00").getTime();
+  var target = new Date("2027-01-03T11:00:00+07:00").getTime();
   var el = { d: document.getElementById("d"), h: document.getElementById("h"), m: document.getElementById("m"), s: document.getElementById("s") };
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
   function tick() {
