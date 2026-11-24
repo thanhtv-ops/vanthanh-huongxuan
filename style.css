@@ -296,3 +296,7 @@ body.locked{overflow:hidden}
 .mass-verse small{display:block;margin-top:4px;font-style:normal;font-size:12px;letter-spacing:.2em;color:var(--muted)}
 .mass-pray{margin:14px auto 0;font-size:14px;color:var(--muted);max-width:22em}
 .event.mass .btns{margin-top:22px}
+.mass-verse{max-width:none;font-size:clamp(15px,4.9vw,19px)}
+.mass-verse span{display:block;white-space:nowrap}
+.mass-title{font-size:clamp(23px,7.6vw,36px);white-space:nowrap}
+.event.mass .sub,.mass-pray{text-wrap:balance}
