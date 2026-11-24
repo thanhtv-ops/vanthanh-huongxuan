@@ -300,3 +300,6 @@ body.locked{overflow:hidden}
 .mass-verse span{display:block;white-space:nowrap}
 .mass-title{font-size:clamp(23px,7.6vw,36px);white-space:nowrap}
 .event.mass .sub,.mass-pray{text-wrap:balance}
+
+/* dấu & dạng hình */
+.amp-img{display:block;width:clamp(120px,36vw,170px);height:auto;margin:14px auto 4px;opacity:.9}
