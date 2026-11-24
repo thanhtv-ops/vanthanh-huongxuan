@@ -186,7 +186,7 @@
   if (!open || !box) return;
   var title = "Tiệc cưới Văn Thành & Hương Xuân";
   var place = "Aqua Jardin (Sảnh Haru, Tầng 1), 307 Nơ Trang Long, P. Bình Lợi Trung, Tp. Hồ Chí Minh";
-  var desc = "Đón khách 11:00. Bãi giữ xe oto tại Sân vận động Gia Định số 2A Phan Chu Trinh. Thiệp mời: " + location.href.split("#")[0];
+  var desc = "Đón khách 11:00. Bãi giữ xe oto tại Sân vận động Gia Định số 2A Phan Chu Trinh. Thiệp mời: https://thanhtv-ops.github.io/vanthanh-huongxuan/";
   g.href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
     "&text=" + encodeURIComponent(title) +
     "&dates=20270103T110000/20270103T140000&ctz=Asia%2FHo_Chi_Minh" +
