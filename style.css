@@ -303,3 +303,9 @@ body.locked{overflow:hidden}
 
 /* dấu & dạng hình */
 .amp-img{display:block;width:clamp(120px,36vw,170px);height:auto;margin:14px auto 4px;opacity:.9}
+
+/* thêm vào lịch */
+.cal-open{margin-top:14px;background:transparent!important;color:#f3d98b!important;border:1px solid #f3d98b!important;font-weight:600}
+.cal-box{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.cal-box[hidden]{display:none}
+.cal-hint{flex-basis:100%;font-size:12.5px;line-height:1.5;color:#c9ddc6;text-wrap:balance}

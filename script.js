@@ -178,3 +178,33 @@
   cv.addEventListener("click", function (e) { if (e.target === cv) open(); });
   setTimeout(function () { btn.focus && btn.focus({ preventScroll: true }); }, 50);
 })();
+
+/* thêm vào lịch: tiệc cưới 11:00 03.01.2027, nhắc trước 2 tiếng */
+(function () {
+  var open = document.getElementById("calOpen"), box = document.getElementById("calBox"),
+      g = document.getElementById("calGoogle"), ics = document.getElementById("calIcs"), hint = document.getElementById("calHint");
+  if (!open || !box) return;
+  var title = "Tiệc cưới Văn Thành & Hương Xuân";
+  var place = "Aqua Jardin (Sảnh Haru, Tầng 1), 307 Nơ Trang Long, P. Bình Lợi Trung, Tp. Hồ Chí Minh";
+  var desc = "Đón khách 11:00. Bãi giữ xe oto tại Sân vận động Gia Định số 2A Phan Chu Trinh. Thiệp mời: " + location.href.split("#")[0];
+  g.href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" + encodeURIComponent(title) +
+    "&dates=20270103T110000/20270103T140000&ctz=Asia%2FHo_Chi_Minh" +
+    "&details=" + encodeURIComponent(desc) + "&location=" + encodeURIComponent(place);
+  if (/Zalo|FBAN|FBAV|Messenger|Instagram/i.test(navigator.userAgent)) hint.hidden = false;
+  open.addEventListener("click", function () {
+    var show = box.hidden; box.hidden = !show; open.setAttribute("aria-expanded", show ? "true" : "false");
+  });
+  function esc(t) { return t.replace(/\\/g, "\\\\").replace(/;/g, "\;").replace(/,/g, "\\,").replace(/\n/g, "\\n"); }
+  ics.addEventListener("click", function () {
+    var L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Thiep cuoi//VI", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+      "BEGIN:VEVENT", "UID:tiec-cuoi-20270103@thiep-cuoi", "DTSTAMP:20261124T000000Z",
+      "DTSTART:20270103T040000Z", "DTEND:20270103T070000Z",
+      "SUMMARY:" + esc(title), "LOCATION:" + esc(place), "DESCRIPTION:" + esc(desc),
+      "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + esc(title), "TRIGGER:-PT2H", "END:VALARM",
+      "END:VEVENT", "END:VCALENDAR"];
+    var blob = new Blob([L.join("\r\n") + "\r\n"], { type: "text/calendar;charset=utf-8" });
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "tiec-cuoi-03-01-2027.ics";
+    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  });
+})();
