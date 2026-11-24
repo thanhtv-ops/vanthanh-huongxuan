@@ -179,7 +179,7 @@
   setTimeout(function () { btn.focus && btn.focus({ preventScroll: true }); }, 50);
 })();
 
-/* thêm vào lịch: tiệc cưới 11:00 03.01.2027, nhắc trước 2 tiếng */
+/* thêm vào lịch: tiệc cưới 11:00 03.01.2027, nhắc lúc 09:00 sáng */
 (function () {
   var open = document.getElementById("calOpen"), box = document.getElementById("calBox"),
       g = document.getElementById("calGoogle"), ics = document.getElementById("calIcs"), hint = document.getElementById("calHint");
@@ -201,7 +201,7 @@
       "BEGIN:VEVENT", "UID:tiec-cuoi-20270103@thiep-cuoi", "DTSTAMP:20261124T000000Z",
       "DTSTART:20270103T040000Z", "DTEND:20270103T070000Z",
       "SUMMARY:" + esc(title), "LOCATION:" + esc(place), "DESCRIPTION:" + esc(desc),
-      "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + esc(title), "TRIGGER:-PT2H", "END:VALARM",
+      "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + esc("Hôm nay 11:00 – " + title), "TRIGGER:-PT2H", "END:VALARM",
       "END:VEVENT", "END:VCALENDAR"];
     var blob = new Blob([L.join("\r\n") + "\r\n"], { type: "text/calendar;charset=utf-8" });
     var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "tiec-cuoi-03-01-2027.ics";
