@@ -208,3 +208,53 @@
     document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
   });
 })();
+
+/* ===== hiệu ứng thêm: cánh hoa rơi, số nảy, tim bay ===== */
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  // 1. Cánh hoa nhẹ rơi ở đầu trang và cuối trang
+  function petals(host, n) {
+    if (!host) return;
+    var box = document.createElement("div"); box.className = "petals"; box.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < n; i++) {
+      var p = document.createElement("i"), s = 7 + Math.random() * 9;
+      p.style.cssText = "left:" + (Math.random() * 100).toFixed(1) + "%;width:" + s.toFixed(1) + "px;height:" + (s * 1.25).toFixed(1) +
+        "px;--t:" + (10 + Math.random() * 9).toFixed(1) + "s;--dl:-" + (Math.random() * 14).toFixed(1) + "s;--sw:" + (Math.round(Math.random() * 80) - 20) + "px;" +
+        "background:" + (Math.random() < .3 ? "#f1d9a0" : Math.random() < .5 ? "#cfe3cc" : "#a9cda3");
+      box.appendChild(p);
+    }
+    host.insertBefore(box, host.firstChild);
+  }
+  petals(document.querySelector(".hero"), 14);
+  petals(document.querySelector(".closing"), 10);
+
+  // 2. Số đếm ngược nảy mỗi khi đổi
+  var last = {};
+  setInterval(function () {
+    ["d", "h", "m", "s"].forEach(function (k) {
+      var e = document.getElementById(k); if (!e) return;
+      if (last[k] !== undefined && last[k] !== e.textContent) { e.classList.remove("tk"); void e.offsetWidth; e.classList.add("tk"); }
+      last[k] = e.textContent;
+    });
+  }, 500);
+
+  // 3. Tim bay lên (khi mở thiệp và khi chạm vào dấu &)
+  window.fxBurst = function (x, y, n) {
+    for (var i = 0; i < (n || 14); i++) {
+      var h = document.createElement("span"); h.className = "fx-heart"; h.textContent = Math.random() < .25 ? "✦" : "♥";
+      h.style.left = x + "px"; h.style.top = y + "px"; h.style.fontSize = (12 + Math.random() * 14) + "px";
+      h.style.color = ["#c0556b", "#e08a9b", "#46663a", "#d9b44a"][Math.floor(Math.random() * 4)];
+      document.body.appendChild(h);
+      var dx = (Math.random() - .5) * 220, dy = -(90 + Math.random() * 190);
+      var a = h.animate([{ transform: "translate(-50%,-50%) scale(.4)", opacity: 1 },
+        { transform: "translate(calc(-50% + " + dx + "px),calc(-50% + " + dy + "px)) scale(1.1) rotate(" + (Math.random() * 60 - 30) + "deg)", opacity: 0 }],
+        { duration: 1100 + Math.random() * 900, easing: "cubic-bezier(.2,.7,.3,1)" });
+      a.onfinish = (function (el) { return function () { el.remove(); }; })(h);
+    }
+  };
+  var open = document.getElementById("open");
+  if (open) open.addEventListener("click", function () { var r = open.getBoundingClientRect(); window.fxBurst(r.left + r.width / 2, r.top + r.height / 2, 22); });
+  document.addEventListener("click", function (e) {
+    if (e.target && e.target.closest && e.target.closest(".amp-img, .amp-h")) window.fxBurst(e.clientX, e.clientY, 12);
+  });
+})();

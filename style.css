@@ -317,3 +317,58 @@ body.locked{overflow:hidden}
 .cv-names span img{display:block;height:1.05em;width:auto}
 .cv-names{font-size:clamp(22px,6.8vw,52px)}
 .cv-names span img{height:1.3em}
+
+/* ===== thêm hiệu ứng chuyển động ===== */
+.hero,.closing{position:relative;overflow:hidden}
+.petals{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.petals i{position:absolute;top:-24px;display:block;border-radius:0 100% 0 100%;background:#a9cda3;opacity:0;animation:petal var(--t,12s) linear var(--dl,0s) infinite;will-change:transform}
+@keyframes petal{0%{transform:translate3d(0,-20px,0) rotate(0);opacity:0}8%{opacity:.75}50%{transform:translate3d(var(--sw,30px),50vh,0) rotate(180deg)}92%{opacity:.6}100%{transform:translate3d(calc(var(--sw,30px)*-.6),105vh,0) rotate(360deg);opacity:0}}
+.hero .wrap,.closing>*{position:relative;z-index:1}
+.closing .petals{z-index:0}
+
+/* ánh sáng lướt qua tên và ngày */
+.hero .names,.hero .date-big{background-image:linear-gradient(100deg,var(--green-deep) 38%,#86b87c 50%,var(--green-deep) 62%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:rise .9s var(--ease) forwards,sheen 7s ease-in-out 2.2s infinite;animation-delay:var(--d,0s),2.2s}
+@keyframes sheen{0%,35%{background-position:120% 0}70%,100%{background-position:-20% 0}}
+
+/* ảnh hero toả sáng nhẹ */
+.hero .arch.rise{animation:rise .9s var(--ease) forwards,glow 5s ease-in-out 1.6s infinite;animation-delay:var(--d,0s),1.6s}
+@keyframes glow{0%,100%{box-shadow:0 18px 40px -18px rgba(52,80,44,.5),0 0 0 0 rgba(70,102,58,0)}50%{box-shadow:0 18px 40px -18px rgba(52,80,44,.5),0 0 0 14px rgba(70,102,58,.1)}}
+
+/* tiêu đề "viết" ra từ trái sang phải */
+.js .script-h.reveal,.js .closing .thanks.reveal{clip-path:inset(-14px 100% -14px 0);transition:opacity .5s var(--ease),transform .9s var(--ease),clip-path 1.5s var(--ease)}
+.js .script-h.reveal.in,.js .closing .thanks.reveal.in{clip-path:inset(-14px -14px -14px -14px)}
+
+/* ảnh trượt vào hơi nghiêng */
+.js .mosaic .ph.reveal{transform:translateY(30px) rotate(-1.6deg)}
+.js .mosaic .ph.reveal:nth-child(even){transform:translateY(30px) rotate(1.6deg)}
+.js .mosaic .ph.reveal.in{transform:none}
+
+/* đồng hồ đếm ngược nảy khi đổi số */
+.count strong{display:inline-block}
+.count strong.tk{animation:tk .45s var(--ease)}
+@keyframes tk{0%{transform:translateY(-8px) scale(1.12);opacity:.4}100%{transform:none;opacity:1}}
+
+/* nhãn Ngày tiệc lấp lánh, nút lịch toả nhịp */
+.event.main .badge{overflow:hidden}
+.event.main .badge::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);animation:shine 3.4s ease-in-out 1s infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.cal-open{animation:calp 3s ease-in-out infinite}
+@keyframes calp{0%,100%{box-shadow:0 0 0 0 rgba(243,217,139,0)}50%{box-shadow:0 0 0 8px rgba(243,217,139,.16)}}
+
+/* dấu & nhè nhẹ lên xuống, bấm vào có tim bay */
+.amp-img,.names .amp-h img{cursor:pointer;animation:bob 4.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px) scale(1.04)}}
+.fx-heart{position:fixed;z-index:300;pointer-events:none;font-size:18px;line-height:1;color:#c0556b;will-change:transform,opacity}
+
+/* màn mở thiệp: phóng nhẹ rồi tan */
+.cover{transition:opacity 1s ease,visibility 1s,transform 1.1s var(--ease)}
+.cover.gone{transform:scale(1.12)}
+
+@media (prefers-reduced-motion:reduce){
+  .petals,.event.main .badge::after{display:none}
+  .hero .names,.hero .date-big{animation:none;background:none;-webkit-text-fill-color:currentColor;color:var(--green-deep)}
+  .hero .arch.rise,.cal-open,.amp-img,.names .amp-h img,.count strong.tk{animation:none}
+  .js .script-h.reveal,.js .closing .thanks.reveal{clip-path:none}
+  .js .mosaic .ph.reveal,.js .mosaic .ph.reveal:nth-child(even){transform:none}
+  .cover.gone{transform:none}
+}
