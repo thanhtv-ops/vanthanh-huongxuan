@@ -381,8 +381,8 @@ body.locked{overflow:hidden}
 .cv-card::before{content:"";position:absolute;inset:9px;border:1px solid rgba(70,102,58,.5);border-radius:3px;pointer-events:none}
 .cv-card::after{content:"";position:absolute;inset:14px;border:1px solid rgba(70,102,58,.2);border-radius:2px;pointer-events:none}
 .cv-corner{position:absolute;width:18px;height:18px;border:2px solid #b99a45;opacity:.85;z-index:2}
-.cv-corner.tl{top:5px;left:5px;border-right:0;border-bottom:0}.cv-corner.tr{top:5px;right:5px;border-left:0;border-bottom:0}
-.cv-corner.bl{bottom:5px;left:5px;border-right:0;border-top:0}.cv-corner.br{bottom:5px;right:5px;border-left:0;border-top:0}
+.cv-corner.c-tl{top:8px;left:8px;border-right:0;border-bottom:0}.cv-corner.c-tr{top:8px;right:8px;border-left:0;border-bottom:0}
+.cv-corner.c-bl{bottom:8px;left:8px;border-right:0;border-top:0}.cv-corner.c-br{bottom:8px;right:8px;border-left:0;border-top:0}
 .cover .cross{width:20px;margin:0 auto 8px;display:block}
 .cv-kicker{font-family:'Dancing Script',cursive;font-weight:600;font-size:30px;color:var(--green-deep);line-height:1;margin-bottom:12px}
 .cv-arch{width:min(46%,170px);aspect-ratio:4/5;margin:0 auto 14px;border-radius:999px 999px 10px 10px;overflow:hidden;box-shadow:0 10px 24px -12px rgba(38,58,34,.55);outline:1px solid rgba(185,154,69,.7);outline-offset:4px}
