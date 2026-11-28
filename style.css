@@ -372,3 +372,27 @@ body.locked{overflow:hidden}
   .js .mosaic .ph.reveal,.js .mosaic .ph.reveal:nth-child(even){transform:none}
   .cover.gone{transform:none}
 }
+
+/* ===== màn mở thiệp dạng tấm thiệp ===== */
+.cover{overflow-y:auto;padding:18px}
+.cv-card{position:relative;width:min(90vw,410px);margin:auto;padding:34px 22px 30px;text-align:center;border-radius:6px;
+  background:linear-gradient(#fdfefb,#f6faf2);box-shadow:0 30px 60px -24px rgba(38,58,34,.45),0 2px 0 rgba(255,255,255,.8) inset;
+  animation:cardin 1s var(--ease) both;transition:transform 1s var(--ease),opacity .9s ease}
+.cv-card::before{content:"";position:absolute;inset:9px;border:1px solid rgba(70,102,58,.5);border-radius:3px;pointer-events:none}
+.cv-card::after{content:"";position:absolute;inset:14px;border:1px solid rgba(70,102,58,.2);border-radius:2px;pointer-events:none}
+.cv-corner{position:absolute;width:18px;height:18px;border:2px solid #b99a45;opacity:.85;z-index:2}
+.cv-corner.tl{top:5px;left:5px;border-right:0;border-bottom:0}.cv-corner.tr{top:5px;right:5px;border-left:0;border-bottom:0}
+.cv-corner.bl{bottom:5px;left:5px;border-right:0;border-top:0}.cv-corner.br{bottom:5px;right:5px;border-left:0;border-top:0}
+.cover .cross{width:20px;margin:0 auto 8px;display:block}
+.cv-kicker{font-family:'Dancing Script',cursive;font-weight:600;font-size:30px;color:var(--green-deep);line-height:1;margin-bottom:12px}
+.cv-arch{width:min(46%,170px);aspect-ratio:4/5;margin:0 auto 14px;border-radius:999px 999px 10px 10px;overflow:hidden;box-shadow:0 10px 24px -12px rgba(38,58,34,.55);outline:1px solid rgba(185,154,69,.7);outline-offset:4px}
+.cv-arch img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.cv-small{font-size:clamp(15px,4.4vw,18px)}
+.cv-names{font-size:clamp(20px,5.6vw,30px)!important;margin:8px 0 4px}
+.cv-names span img{height:1.4em}
+.cv-date{font-size:clamp(24px,7vw,30px)!important;margin:2px 0 20px}
+.cv-btn{padding:13px 34px;font-size:14px}
+.cover.gone .cv-card{transform:translateY(-36px) scale(1.04);opacity:0}
+.cover.gone{transform:none}
+@keyframes cardin{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.cv-card{animation:none;transition:none}}
